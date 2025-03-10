@@ -1,0 +1,1113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <title>In and About Tierra Monte</title>
+    <style> 
+        nav {
+            color: black;
+            background-color: deepskyblue;
+            font-style:large;
+            font-size: 20px;
+            border: 1px solid black;
+            width: 77%;
+            
+        }
+        
+        /* Style the tab */
+        .tab {
+          float: left;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+          width: 22%;
+          /* height: 300px; */
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+          display: block;
+          background-color: inherit;
+          color: black;
+          padding: 10px 10px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+        .tab button.active {
+          background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+          float: left;
+          padding: 0px 12px;
+          border: 1px solid #ccc;
+          width: 70%;
+          border-left: none;
+          /*height: 300px;*/
+        }
+        
+        /* Style the subtab */
+        .subtab {
+          float: left;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+          width: 20%;
+          /*height: 300px; */
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .subtab button {
+          display: block;
+          background-color: inherit;
+          color: black;
+          padding: 10px 10px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          /*margin-left: 15px;
+          margin-bottom: 4px;*/
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .subtab button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+        .subtab button.active {
+          /*background-color: #ccc;*/
+          background-color:black;
+          /*color:white*/
+        }
+
+        /* Style the history subtab links */
+        .hissubtablinks {
+          /*color:aqua;*/
+          display: block;
+          text-align: left;
+          margin-left: 15px;
+          margin-bottom: 4px;
+          margin-top: 4px;
+          /*line-height: 0.8;*/
+       }
+
+        /* Style the history subtab content */
+        .hissubtabcontent {
+          float: left;
+          padding: 0px 12px;
+          border: 1px solid #ccc;
+          width: 70%;
+          border-left: none;
+          /*height: 300px;*/
+        }
+
+        /* Style the home article subtab links */
+        .homesubtablinks {
+          /*color:aqua;*/
+          display: block;
+          text-align: left;
+          margin-left: 15px;
+          margin-bottom: 4px;
+          margin-top: 4px;
+          /*line-height: 0.8;*/
+       }
+
+        /* Style the subtab content */
+        .homesubtabcontent {
+          float: left;
+          padding: 0px 12px;
+          border: 1px solid #ccc;
+          width: 70%;
+          border-left: none;
+          /*height: 300px;*/
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <script>
+        let historybuttonsvisible = false;
+        let homebuttonsvisible = false;
+        let historybutton_print = document.getElementById("historybutton_print");
+        let homebutton_print = document.getElementById("homebutton_print");
+
+        function toggleHistoryButtons () {
+            historybuttonsvisible = !historybuttonsvisible;
+            console.log('history button =', historybuttonsvisible);
+
+            let i, hissubtablinks, visiblevalue;
+            //display all history buttons or not
+            if (historybuttonsvisible) {
+                visiblevalue = "block";
+            }
+            else {
+                visiblevalue = "none";
+                // Get all elements with class="hissubtabcontent" and hide them
+                hissubtabcontent = document.getElementsByClassName("hissubtabcontent");
+                for (i = 0; i < hissubtabcontent.length; i++) {
+                    hissubtabcontent[i].style.display = "none";
+                }
+            }
+
+            hissubtablinks = document.getElementsByClassName("hissubtablinks");
+            // Get all elements with class="hissubtablinks" and display or hide them 
+            for (i = 0; i < hissubtablinks.length; i++) {
+                hissubtablinks[i].style.display = visiblevalue;
+            }
+        }
+
+        function toggleHomeArticleButtons () {
+            homebuttonsvisible = !homebuttonsvisible;
+            console.log('home button =', homebuttonsvisible);
+
+            let i, homesubtablinks, visiblevalue;
+            //display all history buttons or not
+            if (homebuttonsvisible) {
+                visiblevalue = "block";
+            }
+            else {
+                visiblevalue = "none";
+                // Get all elements with class="hissubtabcontent" and hide them
+                homesubtabcontent = document.getElementsByClassName("homesubtabcontent");
+                for (i = 0; i < homesubtabcontent.length; i++) {
+                    homesubtabcontent[i].style.display = "none";
+                }
+            }
+
+            homesubtablinks = document.getElementsByClassName("homesubtablinks");
+            // Get all elements with class="homesubtablinks" and display or hide them 
+            for (i = 0; i < homesubtablinks.length; i++) {
+                homesubtablinks[i].style.display = visiblevalue;
+            }
+        }        
+        function openSection(evt, sectionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(sectionName).style.display = "block";
+            console.log("section name is ",sectionName);
+            evt.currentTarget.className += " active";
+
+            if ((sectionName == 'History') || (historybuttonsvisible)) 
+            {
+                toggleHistoryButtons();
+                if ( !historybuttonsvisible ){
+                    document.getElementById(sectionName).style.display = "none";
+                    evt.currentTarget.className = evt.currentTarget.className.replace(" active", "");
+                }
+            }
+
+            if ((sectionName == 'House Articles') || (homebuttonsvisible)) 
+            {
+                toggleHomeArticleButtons();
+                if ( !homebuttonsvisible ){
+                    document.getElementById(sectionName).style.display = "none";
+                    evt.currentTarget.className = evt.currentTarget.className.replace(" active", "");
+                }
+            }
+        }
+        function openHistoryButtons() {
+            let historybuttons = document.getElementById("historybuttons");
+            historybuttons.className = "visible";
+        }
+        
+        function openHistory(evt, historySelection) {
+            // Declare all variables
+            var i, hissubtabcontent, hissubtablinks;
+
+            // Get all elements with class="hissubtabcontent" and hide them
+            hissubtabcontent = document.getElementsByClassName("hissubtabcontent");
+            for (i = 0; i < hissubtabcontent.length; i++) {
+                hissubtabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="hissubtablinks" and remove the class "active"
+            hissubtablinks = document.getElementsByClassName("hissubtablinks");
+            for (i = 0; i < hissubtablinks.length; i++) {
+                hissubtablinks[i].className = hissubtablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(historySelection).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+                
+        function openHomeArticles(evt, homeSelection) {
+            // Declare all variables
+            var i, homesubtabcontent, homesubtablinks;
+
+            // Get all elements with class="homesubtabcontent" and hide them
+            homesubtabcontent = document.getElementsByClassName("homesubtabcontent");
+            for (i = 0; i < homesubtabcontent.length; i++) {
+                homesubtabcontent[i].style.display = "none";
+            }
+
+            homesubtablinks = document.getElementsByClassName("homesubtablinks");
+            for (i = 0; i < homesubtablinks.length; i++) {
+                homesubtablinks[i].className = homesubtablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(homeSelection).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</head>
+<body>
+    <div id="banner">
+        <h1><strong>In and About Tierra Monte</strong> </h1>
+        <br/> <br/>
+        
+     <div class="tab">
+        <button class="tablinks" onclick="openSection(event,'Intro')">Introduction</button>
+        <button class="tablinks" onclick="openSection(event,'Location')">Location</button>    
+        <button class="tablinks" onclick="openSection(event,'Plat')">Plat</button>
+        <button class="tablinks" onclick="openSection(event,'History')">History</button> 
+        <!--<button class="tablinks" onclick="openHistoryButtons()">History of Area</button> -->
+         <div id="historybutton_print">
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Treaty')">Treaty</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Homesteads')">Homesteads</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Homestead Surveys')">Homestead Surveys</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Homestead Markers')">Homestead Markers</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Forest')">Forest & Wilderness</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Water')">Water</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Building')">Building</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Valley View')">Valley View</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Access')">Access</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Pueblo Claim')">Pueblo Claim</button>
+        </div>
+        <button class="tablinks" onclick="openSection(event,'CCC')">CCC</button>
+        <button class="tablinks" onclick="openSection(event,'Medallion')">Medallion Trees</button> 
+        <button class="tablinks" onclick="openSection(event,'Residents')">Residents</button>
+        <button class="tablinks" onclick="openSection(event,'Houses')">Houses</button> 
+        <button class="tablinks" onclick="openSection(event,'House Articles')">House Articles</button>
+        <div id="homebutton_print">
+            <button class="homesubtablinks" style="display:none;" onclick="openHomeArticles(event,'Southern Mansion')">Southern Mansion</button>
+            <button class="homesubtablinks" style="display:none;" onclick="openHomeArticles(event,'Mediterranean Villa')">Mediterranean Villa</button>
+            <button class="homesubtablinks" style="display:none;" onclick="openHomeArticles(event,'Hutchins')">Hutchins</button>
+        </div>
+        <button class="tablinks" onclick="openSection(event,'Acknowledgements')">Acknowledgements</button>
+    </div>
+
+    <!--<style>     
+        .vertical-menu {
+            width: 200px;
+        }
+      </style>  -->
+    <!--<div class="vertical-menu">
+         style="margin-left:3em;" class="invisible">
+        <a id="I" href="#Intro">Introduction</a>
+        <a id="L" href="#Location">Location</a>
+        <a id="H" href="#History of Area">History of Area</a>
+        <a id="C" href="#CCC Structures in Area">CCC Structures in Area</a>
+        <a id="M" href="#Medallion Trees">Medallion Trees </a>       
+        <a id="R" href="#Previous and Current Residents">Previous and Current Resident </a>       <a id="H" href="#Current Houses">Current Houses </a>
+    </div>-->
+        
+    <div id="Intro" class="tabcontent">
+        <img  src="./Pictures/tierramonte.jpg" width="300" height="175" alt="Tierra Monte">
+        <h2>Introduction</h2>      
+        <p>Tierra Monte and Valley View Acres are small communities nestled in the foothills of Juan Tabo Canyon.</p>
+    </div>
+    <div style="display:none;" id="Location" class="tabcontent">   
+        <h2> Location</h2>
+        <p>Tierra Monte and Valley View Acres are located east of the intersection of Tramway and Forest Road 333. 
+        To drive to Tierra Monte and Valley View Acres one turns on Forest Road 333 off of Tramway, travels approximately 
+        1 mile, and then takes a right on Tierra Monte Dr. The community is north of the Tram which opened for
+        operation on May 7, 1966.  Note in the 1960s Tramway was still a two lane dirt road. 
+        </p>
+        <img  src="./Pictures/google_map.jpg" width="600" height="400">
+    </div>
+    <div style="display:none;" id="Plat" class="tabcontent">   
+        <h2> Plat</h2>
+        <p> The below plat map encompasses Tierra Monte and Valley View Acres. It should be noted that this area 
+            was primarily derived from two homesteads that existed in the early 1900s. The homesteads are discussed in
+            more detail under the "History-Homesteads" tab.  Looking at the homestead plats under this tab you can 
+            see the current plat boundaries follow the two homestead plats. Eight markers would define the two 
+            homestead boundaries and these are discussed in detail under the "History-Homestead Markers" tab.
+        </p>
+        <img  src="./Pictures/TierraMonte_Plat.jpg" width="650" height="443">
+    </div>
+    <div style="display:none;" id="History" class="tabcontent">   
+        <h2> History of Area</h2>
+    </div>
+    <div style="display:none;" id="Treaty" class="hissubtabcontent">
+        <h2>Treaty of Guadalupe Hidalgo</h2>
+        <p>The United States acquired the territory that is now the State of New Mexico through the Treaty of Guadalupe Hidalgo on February 2, 1848, ending the war with Mexico. This treaty recognized the Spanish Land Grants previously in place.  It was not until 1912 that New Mexico became a state.</p>
+    </div>
+    <div style="display:none;" id="Homesteads" class="hissubtabcontent"> 
+        <h2>Original Land Homesteads in Tierra Monte</h2>
+        <p>
+            <span>The act of Congress May 20, 1862, “To Secure Homesteads to Actual Settlers on the Public Domain” was the 
+            basis of two patents related to claims that make up Tierra Monte. To make a claim, homesteaders paid a filing 
+            fee of $18: a $10 fee to make a temporary claim on the land, $2 for commission to the land agent and an additional
+            $6 final payment to receive an official patent on the land. Land titles could also be purchased from the government
+            for $1.25 per acre following six months of proven residency.  Additional requirements included five years of 
+            continuous residence on the land, building a home on it, farming the land and making improvements. A homesteader 
+            was eligible for up to 160 acres. <br><br>
+            
+            The two claims that makeup the Tierra Monte area were established and consisted of H.E. Survey No. 276 
+            to Soloman Chavez and H.E. Survey No. 275 to Juan Chavez with a total acreage of only 79.5 acres. 
+            These were recorded under Patent Numbers 848125 and 773918, respectively.  They were signed by Presidents 
+            Warren G Harding on 2/19/1922 and Woodrow Wilson 9/20/1920, respectively.  They were both filed for record on 
+            10/27/1949. Both embraced a portion of, approximately, Section 2 Township 11 north of Range 4 east of 
+            the New Mexico Meridian. It is assumed that the two Chavez's with the adjacent homesteads were related. 
+            The surveyor listed their addresses as Alameda, New Mexico and noted that Alameda was 7 miles away. One 
+            unanswered question is why did these homesteaders not claim more land?  Did they purchase the land titles 
+            at $1.25 per acre so the cost was a limiting factor?<br><br>
+
+            Detailed information from surveyor, C. A. Long, who in 1916 surveyed the homesteads in Section 2 Township 11 
+            north of Range 4 east of the New Mexico Meridian, can be found under Surveys in website, 
+            https://glorecords.blm.gov/search/default.aspx#searchTabIndex=0&searchByTypeIndex=0. 
+            The homestead plat maps, included below are from this website. 
+            </span> 
+        </p>
+        <p>Soloman Chavez's Plat No. 276</p>
+        <img  src="./Pictures/Homestead_Plat_276.jpg" width="650" height="443">
+        <br>
+        <p>Juan Chavez's Plat No. 275</p>
+        <img  src="./Pictures/Homestead_Plat_275.jpg" width="650" height="443">
+        <h3>Homestead Notes and Homesteads Outside of Tierra Monte</h3>
+        <p>
+            <span>
+                The surveyor notes on homesteads 275 and 276 states that each site had an adobe house, a rock wagon shed, 
+                and a pole corral for goats. The location of these structures is indicated on each plat. Per the surveyor 
+                each site was suitable for raising around 100 goats. Springs supplied water for both the household and the
+                livestock. It is of interest to note that the surveyor in 1916 estimated the land improvements: the house,
+                wagon shed, and corral, to be $200 for each homestead.
+
+                The picture below is believed to be the remains of the rock wagon shed for homestead 275.       
+            </span>
+        </p>
+        <img  src="./Pictures/Wagon_Shed_Remains_275.jpg" width="300" height="350">
+        <p>
+            <span>
+                In addition, the surveyor notes that there is no U.S.L.M. available with the prescribed limits, so the surveyor establishes
+                U.S.L.M. No. 1 Sandia on a rocky ridge bearing East and West.  This is established on a granite rock 20 feet
+                in diameter and 10 feet high. Detailed information about this reference point is given under the surveyor 
+                notes for claim 268. Claims 268, 270, 275, and 276 all reference a direction and distance from U.S.L.M. No. 1.
+                The rock pictured below pointed to by the arrow is believed to be the reference rock the surveyor used.
+            </span>
+        </p>
+        <img  src="./Pictures/USLM_Sandia_No1_Reference_Rock_markup.jpg" width="550" height=425">  
+        <p>
+            <span>
+                Around the same time homestead claims 275 and 276 were being surveyed homestead claim 270 in Section 11
+                Township 11 north of Range 4 east of the New Mexico Meridian was also surveyed by the same surveyor, 
+                C.A. Long. Cosme Garcia's claim, claim 270 is now the northern section of Sandia Heights north. <br><br> 
+            </span>
+        </p>
+        <p>Cosme Garcia's Plat No. 270</p>
+        <img  src="./Pictures/Homestead_Plat_270.jpg" width="650" height="443">          
+    </div>
+    <div style="display:none;" id="Homestead Surveys" class="hissubtabcontent"> 
+        <h2>Understanding the Homestead Surveys</h2>
+        <p>
+            <span>Township surveys were introduced after 1782 and in New Mexico Township surveying began in 1855 when the 
+                New Mexico Principal Meridian was adopted. Plat maps from survey numbers 275 and 276 show dimensions in chains 
+                (Gunter's chain). One chain is 66 feet long consisting of 100 links and each link in the chain is 7.92 inches.
+                A township is 6 miles on each side and divided into 36 sections each being 1 mile by 1 mile. Claim numbers 275 
+                and 276 fall under Township 11 section 2. Township sections are numbered as follows: 
+                <table>
+                    <tr><td>6</td>	<td>5</td>	<td>4</td>	<td>3</td>	<td>2</td>	<td>1</td></tr>
+                    <tr><td>7</td>	<td>8</td>	<td>9</td>	<td>10</td>	<td>11</td>	<td>12</td></tr>
+                    <tr><td>18</td>	<td>17</td>	<td>16</td>	<td>15</td>	<td>14</td>	<td>13</td></tr>
+                    <tr><td>19</td>	<td>20</td>	<td>21</td>	<td>22</td>	<td>23</td>	<td>24</td></tr>
+                    <tr><td>30</td>	<td>29</td>	<td>28</td>	<td>27</td>	<td>26</td>	<td>25</td></tr> 
+                    <tr><td>31</td>	<td>32</td>	<td>33</td>	<td>34</td>	<td>35</td>	<td>36</td></tr> 
+                </table>
+                <br>
+            North of the La Cueva Picnic Grounds road there is a marker that specifies the boundaries of Township 11 sections 2,3,10, and 11. 
+            This marker pictured below is located at latitude 35° 12' 10.8"N, longitude 106° 28' 52.8W (35.203, -106.498).
+            </span> 
+        </p>
+        <img  src="./Pictures/Township11_sections_marker.jpg" width="250" height="175">
+        <br>
+        <p>The marker from the road can be seen as follows:</p>
+        <br>
+        <img  src="./Pictures/Township11_sections_marker_offroad.jpg" width="250" height="325">
+        <br><br>
+        <p>
+            <span><b>Differences between Latitude and Longitudes</b><br>
+                In the 1916 survey the surveyor went off of the Reconnaissance Map of San Pedro Quadrangle map.  
+                This map in 1916 most likely used the Clarke 1866 spheroid representation of earth. Current GPS coordinates 
+                used by google photo uses a WGS84 datum.  Because of the difference in datums the surveyor documented 
+                latitude and longitudes did not match the latitude and longitudes associated with the google photos 
+                of the markers. 
+                
+                Example of the difference is seen in the surveyor notes regarding the starting latitude and longitude 
+                for Corner 1 in claim 276 versus the google photo of the same corner.  The surveyor documents has 
+                latitude 35° 11' 25" N and the longitude 106° 29' 06" W. Google photos has the latitude at 35° 12' 25.2" N 
+                and longitude at 106° 28' 51.6" W. Note: one minute of latitude is equal to 1.15 miles and one second of 
+                longitude is 80 feet. That meant to determine where the markers were via GPS, calculations needed 
+                to be done from a known good GPS point. 
+            </span>
+        </p>
+    </div>
+    <div style="display:none;" id="Homestead Markers" class="hissubtabcontent"> 
+        <h2>Claim markers 276 & 275 in Tierra Monte and 270 in Sandia Heights North</h2>
+        <p>
+            <span><b>Claim markers 276 & 275 in Tierra Monte </b><br>
+                In 1966 the Forest Service marked the homestead claims with corner markers.  
+                On the plat below claim 276 corner markers are shown in purple, claim 275 corner  
+                markers are shown in red, and corner markers common to both claims are shown in black.
+                Many of these markers are still visible today. 
+            </span>
+        </p>
+        <img  src="./Pictures/TierraMonte_Plat_markup.jpg" width="650" height="443">  
+        <p>
+            <span><b>Claim 276 Markers in Tierra Monte</b><br>
+                Claim 276 should have four markers but only three were located. 
+                Corner marker 1 of homestead claim 276 is at the southeast corner of lot #10 and is pictured below at 
+                latitude 35° 12' 25.2"N, longitude 106° 28' 51.6W (35.207, -106.481).
+            </span>
+        </p>
+        <img  src="./Pictures/Claim276_corner1.jpg" width="170" height="200">
+        <p>
+            <span>Corner marker 2 is the southwest boundary of homestead claim 276 and is located between lots #3 and #4. 
+                It is also the corner marker 1 or the southeast boundary of homestead claim 275 and is pictured below at 
+                latitude 35° 12' 25.2"N, longitude 106° 29' 13.2"W (35.207, -106.487).
+            </span>
+        </p>
+        <img  src="./Pictures/Claim275_corner1_Claim276_corner2.jpg" width="170" height="200">
+        <p>
+            <span>Corner marker 3 of homestead claim 276 is also the corner marker 6 of homestead claim 275 but was not found 
+                and is believed to be under excavated dirt from the house built in Valley View Acres on lot D (reference Plat).
+
+                Corner marker 4 of homestead claim 276 is the northeast corner of lot #24C1 (reference Plat). It is the 
+                northeast corner of the claim and has a forest service sign by the marker. Both are pictured below at latitude 
+                35° 12' 36"N, longitude 106° 28' 51.6”W (35.210, -106.481).  
+            </span>
+        </p>
+        <img  src="./Pictures/Claim276_corner4.jpg" width="250" height="200">
+        <img  src="./Pictures/Claim276_corner4_sign.jpg" width="250" height="200">
+        <p>
+            <span><b>Claim 275 Markers in Tierra Monte</b><br>
+                Claim 275 should have six markers but only five were located. The common corner of claim 276 corner 3 and 
+                claim 275 corner 6 was not located, additional information on this is above. Corner 1 of claim 275 is 
+                also corner 2 of claim 276 (reference Claim 276 corner 2 picture above). In addition, claim 275  
+                corner marker 2 is believed to be mislabeled as claim 270, and is located southwest of the midpoint 
+                boundary of lot #1. The picture below is of this corner marker 2 located at latitude 35° 12' 36"N, 
+                longitude 106° 28' 51.6"W (35.210, -106.481). 
+            </span>
+        </p>
+        <img  src="./Pictures/Claim275_corner2.jpg" width="170" height="200">
+        <p>
+            <span>
+                Corner marker 3 of claim 275 is north of lot #31A and is the northwest boundary. It is across from a bearing tree, and 
+                all are pictured below by the marker at latitude 35° 12' 43.2"N, longitude 106° 29' 16.8"W (35.212, -106.488)
+            </span>
+        </p>
+        <img  src="./Pictures/Claim275_corner3.jpg" width="250" height="250"> <br>
+        <img  src="./Pictures/Claim275_corner3_bearingtree.jpg" width="280" height="280">
+        <img  src="./Pictures/Claim275_corner3_bearingtree_sign.jpg" width="250" height="280">
+        <p>
+            <span>
+                Corner marker 4 of claim 275 is east of lot A (reference Tierra Monte Plat) in Valley View Acres and is the 
+                northeast boundary for claim 275. It is pictured below at latitude 35° 12' 43.2"N, longitude 106° 29' 2.4"W
+                (35.212, -106.484). 
+            </span>
+        </p>
+        <img  src="./Pictures/Claim275_corner4.jpg" width="170" height="200"> <br>
+        <p>
+            <span>
+                Corner marker 5 of claim 275 is southwest of lot #23C1 (reference Tierra Monte Plat) in Valley View Acres,
+                intersects with the midpoint northern boundary of claim 276,and and is pictured below at 
+                latitude 35° 12' 39.6"N, longitude 106° 29' 2.4"W (35.211, -106.484).
+            </span>
+        </p>
+        <img  src="./Pictures/Claim275_corner5.jpg" width="170" height="200"> <br>
+        <b>Claim 270 Markers in Sandia Heights North</b><br>
+            <p>
+                <span>
+                Claim 270 should have four markers but only three were located, corners 1,3, and 4.<br><br>
+
+                Corner marker 1 of claim 270 along with the forest service sign beside it is pictured below at 
+                latitude 35° 12' 10.8"N, longitude 106° 29' 6"W (35.203, -106.485).
+                </span>
+            </p>
+            <img  src="./Pictures/Claim270_corner1.jpg" width="225" height="200">
+            <img  src="./Pictures/Claim270_corner1_sign.jpg" width="225" height="200"> <br>
+            <p>
+                <span>
+                    Corner marker 2 was estimated to be at latitude 35° 11' 56.4"N, longitude 106° 29' 6"W 
+                    (35.199, -106.485) but could not be located. <br><br>
+
+                    Corner marker 3 of claim 270 below along with the bearing sign associated with it are both 
+                    pictured below at latitude 35° 11' 56.4"N, longitude 106° 29' 27.6"W (35.199, -106.491). 
+                    The bearing sign was lying on the ground at the time of this photo.
+                </span>
+            </p>
+            <img  src="./Pictures/Claim270_corner3.jpg" width="200" height="200">
+            <img  src="./Pictures/Claim270_corner3_sign.jpg" width="225" height="200"> <br>
+            <p>
+                <span>
+                    Corner marker 4 of claim 270 along with the bearing sign associated with it are both pictured 
+                    below at latitude 35° 12' 10.8"N, longitude 106° 29' 27.6"W (35.203, -106.491). 
+                </span>
+            </p>
+            <img  src="./Pictures/Claim270_corner4.jpg" width="225" height="200">
+            <img  src="./Pictures/Claim270_corner4_sign.jpg" width="225" height="200"> <br>
+    </div>
+    <div style="display:none;" id="Forest" class="hissubtabcontent"> 
+        <h2>1906 Forest Reserve and 1978 Establishment of Sandia Wilderness Area</h2>
+        <p>
+            <span>On November 6, 1906 President Theodore Roosevelt reserved most of the area as part of the 
+            Manzano Forest Reserve.  On December 3, 1931, Executive order No. 5752 enlarged and renamed the area 
+            as Cibola National Forest.  In 1978 Congress passed the Endangered American Wilderness Act, 92 Stat. 
+            42 which designated this area and a large portion of the west face of the Sandia Mountains to be managed
+             by the Forest Service as part of the Sandia Mountain Wilderness area. 
+            </span>
+        </p>
+    </div>
+    <div style="display:none;" id="Water" class="hissubtabcontent"> 
+        <h2>Water and Water Rights in Tierra Monte</h2>
+        <p>
+            <span><b>Spring Boxes</b><br>
+                Originally two spring boxes located on lot #42 supplied the Valley View and Tierra Monte area.  
+                Later Tierra Monte had a water system installed that consisted of several wells with holding tanks 
+                while Valley View residents drilled private wells. The original spring boxes supplied water to at 
+                least lot #42 and lot #3 at one time. The picture below shows the two spring boxes that still 
+                exist in the area.
+            </span> 
+        </p>
+        <img  src="./Pictures/TM_spring_boxes.jpg" width="300" height="250"> <br>
+        <p>
+            <span>
+                The north and south spring boxes are pictured separately below.
+            </span>
+        </p>
+        <img  src="./Pictures/TM_north_spring_box.jpg" width="300" height="250">
+        <img  src="./Pictures/TM_south_spring_box.jpg" width="250" height="300"> <br>
+        <p>
+            <span><b>Water Rights</b><br>
+                Bruce Cantrell in November of 1967 had the first well drilled in the area under permit number RG-15341.<br><br>
+                On November 22, 1971, the Tierra Madre Corp, Inc, conveyed all water rights under state permit
+                number RG-12871-CF to Mrs. Joan Cantrell, Albuquerque, New Mexico. Bruce Cantrell gave a 
+                Bill of Sale dated the 28th of July 1975 in which all right, title, and interest in the water 
+                system described as the Tierra Monte Water System, including, well, pipes and tanks were deeded 
+                to Tierra Monte Water Users Association (TMWUA). On August 10, 1975 Mrs. Joan Cantrell subsequently
+                conveyed the same water rights to the TMWUA. <br><br>
+                On June 18, 1990 a certificate of incorporation of the Tierra Monte Water Users Incorporated was signed 
+                by George Franklin, Jerry Berger, A.J. Ferrara, David McCarty, and Fred Seebinger. A board of directors 
+                consisting of five members that are elected biennially in staggered terms of four years each
+                is defined in the Articles of Incorporation documentation.<br><br>
+                <b>Uranium Treatment Center</b><br> In the 1990s the NM Environment Department (NMED) started listing 
+                uranium as a contaminent with maximum levels for compliance. The EPA standard for compliance was 
+                specified as 30 parts per billion(ppb). Beginning in 2007 TMWU board worked on reconfiguring the 
+                well controls such that the lower unranium wells pumped more water. This strategy worked 
+                for the community until 2013 when several violations of the compliance occured. Thus in August 
+                of 2015 the TMWUA board hired a professional engineering firm Martin/Martin to
+                design a treatment system using an absorption/filtration system in media tanks. The 10ft x 18ft
+                building by the mailboxes that houses the treatment system was built in 2016 where an original 
+                well house was located. When the treatment system was installed it was expected that the tanks
+                would need to be swapped every 5 to 10 years and the only company that performed this service was 
+                Waste Remediation Technology (WRT). Over the course of two years, 2015 and 2016, Gary Fisherman
+                was able to secure 280K of infustructure improvement capital outlay grant money from the state so that 
+                Tierra Monte water would be in compliance with the safe drinking requirements. Ken Bergeron served as 
+                president of the TMWUA from 1999 until 2017 to ensure successful completion of this uranium 
+                removal system under his tenure.<br><br>
+                <b>Current Water System in Tierra Monte</b><br>
+                As of January of 2025 Tierra Monte water comes from groundwater drawn from three active wells within 
+                the subdivision.  The water goes through a uranium treatment system that is located in the building 
+                shown below by the mailboxes. The water is also disinfected using chlorine as it goes through the 
+                treatment center.<br><br>
+            </span>
+        </p>
+
+        <img  src="./Pictures/Water_Uranium_Treatment.jpg" width="350" height="300"> <br>
+        <p>
+            <span>
+                Well 3 pictured below is by the mailboxes and is the least used well.
+            </span>
+        </p>
+        <img  src="./Pictures/Water_Well3_behind_Treatment_Building.jpg" width="350" height="300"> <br>
+        <p>
+            <span> After the water is pumped and run through the uranium mitigation system it is stored in three tanks 
+                located in the northeastern corner of Tierra Monte lot #11. Each tank holds approximately 9000 gallons of water.
+                In addition, the tanks have a spray system that can be used to allow radon to escape into the atmosphere. 
+                From the tanks the water is fed through a gravity fed distribution system of in-ground pipes to 
+                Tierra Monte residents. Because the water is a gravity fed system houses closest to the tanks have      
+                low the water pressure while houses farther down the hill from the tanks have very high water 
+                pressure. It was not until around 1996 that water meters at each house were installed. Prior to
+                the meters being installed a flat water rate was charged to each household. By the early 2000s 
+                digital controls were put in place on the wells so the TMWUA board members could monitor and control
+                the pumping.<br><br>
+
+                Well 2 pictured below is located by the storage tanks and contains the lowest-uranium amount as
+                such the water from this well does not go through the uranium mitigation system and goes directly 
+                to the tanks where it is mixed with the water from the other wells.
+            </span>
+        </p> 
+        <img  src="./Pictures/Water_Well2_and_Tanks.jpg" width="250" height="300"> <br>
+        <p>
+            <span>
+                Well 1 pictured below is located on lot #34.
+            </span>
+        </p>
+        <img  src="./Pictures/Water_Well4.jpg" width="250" height="300"> <br
+        <p>
+            <span>
+                Well 5 pictured below is located across from lot #17 but is out of service.
+            </span>
+        </p>
+        <img  src="./Pictures/Water_Well5_.jpg" width="250" height="300"> <br>
+    </div>
+    <div style="display:none;" id="Building" class="hissubtabcontent"> 
+        <h2>Building in Tierra Monte</h2>
+        <p>
+            <span>Building in the Tierra Monte community began in 1954 and by 1971 when Charles R.(Bob) Hutchins' family 
+                moved into #3 there were only 5 houses in the area. In July of 1976 there were 9 residences in the area 
+                connected to the water system  (Smylie(#25),  Hutchins (#3),  Poxon (#14),  Seebinger(#41), Banek(#1), 
+                Rozum(#2), Menk(#5), Fox (#33) and Beerman & Shaffer(#21)).  Note: Developers, Beerman & Shaffer owned 
+                numerous vacant lots. Dave McCarty owned lot #42 but was not connected to the water system at 
+                this time.<br><br>
+
+                On February 9, 1973, the Cantrell v. Lawyers Title Insurance Company lawsuit was served. 
+                This lawsuit dealt with the fact that the land the Cantrell's believed that they purchased 
+                from the Westphall's consisted of 1.9 acres less than what they were led to believe they were
+                getting.  The Cantrell's believed the land they purchased extended to the forest service fence 
+                when it actually did not. 35.103 acres appears to be the acreage the Cantrell's purchased. This
+                area probably excluded lots that were already developed, like McCarty's, Hutchins, etc. It appears
+                that the Cantrell's were compensated $3,420.00 for the 1.9 acre issue.<br><br>
+  
+                On July 27, 1979, a lawsuit of Virgil Wilson and Beulah MyRee Wilson vs. Falls Land & Development 
+                Corp vs Joan Cantrell sued for access to Valley View Acres across lots 11&12. The stipulation of 
+                the lawsuit was that those living in Valley View Acres were to maintain this road. This was filed 
+                on December 18, 1979.<br><br>
+
+                <b> Convenants for Tierra Monte</b><br>
+                The latest Restrictive Covenants for Tierra Monte were filed with the County of Bernalillo 
+                June 16, 2020.<br>
+            </span> 
+        </p>
+    </div>
+    <div style="display:none;" id="Valley View" class="hissubtabcontent"> 
+        <h2>Covenants for Valley View Acres</h2>
+        <p>
+            <span>The latest Restrictive Covenants Imposed on the Valley View Acres Addition was filed with 
+                the County of Bernalillo September 29, 1961.
+            </span>
+        </p>
+    </div>
+    <div style="display:none;" id="Access" class="hissubtabcontent"> 
+        <h2>Access to Tierra Monte</h2>
+        <p>
+            <span>In 1985 Fred Seebinger was lobbying the Forest Service and Bernalillo County to have the 
+                County take over access of the road into Tierra Monte.  He was successful and now the road 
+                into Tierra Monte off of Forest Road 333 is maintained by the County.
+            </span>
+        </p>
+    </div>
+    <div style="display:none;" id="Pueblo Claim" class="hissubtabcontent"> 
+        <h2>1987 Draft Pueblo Claim Submitted – 1988 Conclusion was 1858 survey was not fraudulent or grossly erroneous</h2>
+        <p>
+            <span>In 1987 the Pueblo of Sandia claimed that approximately 10,000 acres of land had been excluded from a 
+                patent issued to the Pueblo by the United States because of an 1864 surveyor error (US Department of 
+                Interior Memorandum dated 12/9/1988). Reference map of claimed area. <br><br>
+                The United States acquired the territory that is now the State of New Mexico through the Treaty of 
+                Guadalupe Hidalgo on February 2, 1848, ending the war with Mexico. The Sandia Pueblo was unique in 
+                that it still had its official Spanish grant documents from 1748.  The translated Spanish grant documents
+                translated by David Whiting were submitted to Congress.  Congress on December 22, 1858 confirmed the 
+                Pueblo's claim. Spanish pueblo land grants granted a “formal pueblo” as “one league from each corner of 
+                the church..”  A league is approximately 2.6 miles. The grant was surveyed by Clements in September 21, 1859,
+                as 24,000 acres with one third of this as first rate bottom land easily irrigate and cultivated. President 
+                Abraham Lincoln issued a patent on November 4, 1864 to the Sandia Pueblo as the survey was completed and approved.<br><br>
+
+                The Sandia Pueblo had been abandoned during the Pueblo revolts of 1680-1696. Friar Juan Miguel Menchero 
+                petitioned Governor and Captain General of New Mexico to relocate Moqui converts to the abandoned site. 
+                On April 5, 1748, Lieutenant General Don Bernardo du Bustamante was commissioned to establish the Pueblo.  
+                On May 16, 1748 Lieutenant General Bustamante performed the rituals then associated with a grant from Spain
+                as memorialized in a document known as the Act of Possession. The western border was measured at only 
+                .5 leagues because of the Rio Grande River.  To compensate for the western border being less than a league 
+                the north and south were extended to 1.48 leagues. Reference the standard league versus the modified league
+                in the north and south directions.  In the US Department of Interior Memorandum dated December 9, 1988 the 
+                conclusion was that the Pueblo of Sandia had not met its burden of demonstrating by preponderance of the 
+                evidence that the 1858 survey was fraudulent of grossly erroneous. This Memorandum was written by 
+                Solicitor Ralph Tarr and accepted by Secretary of Interior, Donald Hodel.
+            </span>
+        </p>
+        <b>1994 Pueblo Claim Resubmitted</b>
+        <p>
+            <span>
+                In 1994 Sandia Pueblo sued the US Forest Service over the land claim.<br><br>
+
+                On December 10, 1996 United States District Judge, Harold Green, allowed the Pueblo to circumvent statutes of 
+                limitation over suing the US Forest Service and on July 20, 1998 he filed an order (Civ No 94-2624) that ordered
+                the 1988 Memorandum be Vacated along with other instructions. Shortly after Judge Green’s order was filed, 
+                the Pueblo published fliers that were distributed to government officials in Washington, DC, landowners in the 
+                claim area, and others. Mediation between the Pueblo, Tram Company, Federal Government, County, City and 
+                landowners also began after the orders were issued but in the fall of 1999 they came to a standstill. The 
+                Pueblo, Tram Company, and the Federal Government continued to work on a draft settlement document. When 
+                presented to the City, County, and landowners, they did not agree with the settlement. In early April 2000 
+                the US Forest Service announced this settlement even though all parties did not agree. One of the disputed 
+                issues was the language that was unequal when referring to the different interested parties. For example when 
+                the Pueblo's rights were described the words "recognize and protect" were used but when referring to the publics 
+                "use and enjoyment of the area," the agreement used the words "respect and assure". The unequal protection 
+                wording was disputed because this could have been problematic in any future litigation or interpretation of 
+                the law.<br><br>
+
+                Dr. Stanley Hordes, former Historian for the State of New Mexico, in 1996 put out a report, History of the 
+                Boundaries of the Pueblo Sandia (1748-1860), concluding the Pueblo received more land that it was entitled 
+                under the 1748 Spanish land grant. This report can be found at 
+                https://digitalrepository.unm.edu/law_certificate_indianlaw_sandia/58/<br><br>
+
+                The following article discusses the eight page color fliers distributed by the Sandia Pueblo.
+            </span>
+        </p>
+        <img  src="./Pictures/Article_8page_Fliers_Distributed.jpg" width="600" height="250"> <br><br>
+        <b>2001 Secretary Babbitt Memorandum on Pueblo Claim</b><br>
+        <p>
+            <span>
+                On January 19, 2001 Solicitor, John Leshy, and Secretary of Interior, Bruce Babbitt signed a Memorandum with 
+                the subject, Eastern Boundary of the Sandia Pueblo Grant, that was favorable to the Pueblo but would not take 
+                effect until 2002 under a new presidential administration. Secretary Babbit served under President Bill Clinton 
+                whose term ended in 2001.
+            </span>
+        </p>
+        <b>2002 Senate Agreement</b><br>
+        <p>
+            <span>
+                In an Albuquerque Journal Article on August 1, 2002 announced the legislation to settle the Sandia Pueblo's 
+                claim to the west face of the Sandia Mountains had won Senate committee approval.  House of Representative, 
+                Heather Wilson along with Senators, Pete Domenici and Jeff Bingaman all representing New Mexico were 
+                instrumental in putting forward the legislation that eventually was approved and settled the claim. The next 
+                step with this legislation was to have it clear the Senate Indian Affairs Committee before heading to the 
+                floor for a full Senate vote. 
+            </span>
+        </p>
+        <img  src="./Pictures/Article_Senate_Committee_Legislation.jpg" width="600" height="400"> <br>
+        <p>
+            <span>
+                The next step with this legislation was to have it clear the Senate Indian Affairs Committee before heading 
+                to the floor for a full Senate vote. The article below has the legislation clearing the Senate Indian Affairs 
+                Committee.
+            </span>
+        </p>
+        <img  src="./Pictures/Article_Senate_Indian_Affairs_Committee.jpg" width="180" height="200"> <br>
+        <p>
+            <span>
+                Prior to the settlement the Piedra Lisa Tract was purchased by the Sandia Pueblo.
+            </span>
+        </p>
+        <img  src="./Pictures/Article_Piedra_Lisa_Tract_Purchase.jpg" width="600" height="250">
+        <p>
+            <span>
+                While the deadline of November 15, 2002 passed for the settlement legislation the settlment will most likely eventually 
+                be ratified and this is discussed in the article below.
+            </span>
+        </p>
+        <img  src="./Pictures/Article_Nov_15th_Deadline_Passes.jpg" width="600" height="250">
+        <p>
+            <span>
+                In the February 13, 2003 article New Mexico Senators Jeff Bingamen and Pete Domenici discuss the settlement that 
+                will satisfy everyone's interests in claim once it is approved. 
+            </span>
+        </p>
+        <img  src="./Pictures/Article_Settlement_Close_to_Passing.jpg" width="600" height="250"> <br><br>
+        <b>2003 T'UF SHUR BIEN PRESERVATION TRUST AREA</b>
+        <p>
+            <span>
+                In 2003 Congress passed and the President signed legislation that settled the Pueblo's claim.<br><br>
+                The legislation that passed can be found on the web at 
+                https://www.govinfo.gov/content/pkg/CRPT-107srpt285/html/CRPT-107srpt285.htm<br><br>
+
+                The legislation included reimbursement of legal fees for all parties involved.  Anita Miller a land 
+                lawyer and homeowner in Sandia Heights North who represented the landowners throughout the claim years, 
+                1987-2003, finally got compensated in July of 2004 after the legislation went through. Landowners who 
+                contributed to the legal expenses also got compensated at the same time.
+            </span>
+        </p>
+        <img  src="./Pictures/Article_Sandia_Claim_Expenses_1.jpg" width="200" height="400">
+        <p>
+            <span>
+                The Sandia Claim Expenses were noted in the following two articles. 
+            </span>
+        </p>
+        <img  src="./Pictures/Article_Sandia_Claim_Expenses_2.jpg" width="170" height="200">
+        <img  src="./Pictures/Article_Sandia_Claim_Expenses_3.jpg" width="170" height="300">
+        <p>
+            <span>
+                The Sandia Claim dispute came to an end when President Bush ratified the compromise as noted 
+                in the February 21, 2003 article below.
+            </span>
+        </p>
+        <img  src="./Pictures/Article_President_Bush_Ratifies_Compromise.jpg" width="600" height="250">
+    </div>
+    <div style="display:none;" id="CCC" class="tabcontent">  
+        <h2>CCC Structures in the Area</h2>
+        <p> 
+            <span>All around Tierra Monte is evidence of Civilian Conservation Corps (CCC) work projects.  Stan Cohen in his 
+            Tree Army book, states that more than 32,300 men from New Mexico were enrolled in the CCC and more than 
+            54,500 men served in the state.  In this book he notes averages of 32 camps a year were operated with a total 
+            financial obligation within the state of more than $63,370,000. The Juan Tabo and La Cueva picnic ground areas 
+            were established by the CCC.<br><br>
+
+            In Dirk Van Hart's book, Camps and Campsites of the Civilian Conservation Corps (CCC) in New Mexico 1933-1942, 
+            there is a picture (reference scanned page below from this book) of the CCC campsite at Tramway and Forest Road 
+            333.  
+            </span>   
+        </p>
+        <img  src="./Pictures/CCC_Camp_by_Juan_Tabo_Cabin_Van_Hart.jpg" width="500" height="650">
+        <p> 
+            <span>
+                The stone Juan Tabo Cabin (scanned page below from Dirk Van Hart's book) was built by the CCC and still exists.                
+            </span>
+        </p>
+        <img  src="./Pictures/CCC_Juan_Tabo_Cabin_Van_Hart.jpg" width="500" height="650">
+        <p> 
+            <span>
+                The following pictures show the front, the south side, and the inside of the Juan Tabo cabin as they looked 
+                in 2024.
+            </span>
+        </p>
+        <img  src="./Pictures/CCC_Juan_Tabo_Cabin_Front_2024.jpg" width="450" height="325">
+        <img  src="./Pictures/CCC_Juan_Tabo_Cabin_South_Side_2024.jpg" width="450" height="325">
+        <img  src="./Pictures/CCC_Juan_Tabo_Cabin_Inside_2024.jpg" width="450" height="325">
+        <p> 
+            <span>
+                In addition, an incinerator pictured below is just southwest of the Juan Tabo cabin.
+            </span> 
+        </p>
+        <img  src="./Pictures/CCC_Incinerator_2024.jpg" width="400" height="300">
+        <p> 
+            <span>
+                A spring box built by the CCC pictured below is south of the Juan Tabo cabin by electric pole 2.
+            </span>
+        </p>
+        <img src="./Pictures/CCC_Pole2_by_Spring_Box_South_2024.jpg" width="150" height="200">
+        <img src="./Pictures/CCC_Spring_Box_South_Front_2024.jpg" width="150" height="200">
+        <img src="./Pictures/CCC_Spring_Box_South_Side_2024.jpg" width="280" height="200">
+        <p> 
+            <span>
+                Close to one parking area off of Forest Road 333 there is a concrete slab pictured below that is 
+                approximately 14' x 19'6" with a cutout 3' x 6'6" that is 1'10" from the southern edge.  The long edge 
+                runs north and south. What was this a foundation for?
+            </span>
+        </p>
+        <img src="./Pictures/CCC_Concrete_Slab.jpg" width="280" height="200">
+        <p> 
+            <span>
+                The deteriorating stone Jaral Cabin at Spring Creek also built by the CCC is south of Tierra Monte in the 
+                foothills, located off the Tramway Trail. Below are 2024 pictures of the sign to spring creek off of Tramway
+                Trail, the seeping spring in front of the Jaral Cabin, the Jaral Cabin looking east,  and the Jaral Cabin
+                looking west. 
+            </span>
+        </p>
+        <img src="./Pictures/CCC_Sign_to_Spring_Creek.jpg" width="150" height="200">
+        <img src="./Pictures/CCC_Spring_at_Jaral_Cabin.jpg" width="280" height="300"><br>
+        <img src="./Pictures/CCC_Jaral_Cabin_East_2024.jpg" width="420" height="315">
+        <img src="./Pictures/CCC_Jaral_Cabin_West_2024.jpg" width="420" height="315">
+        <p> 
+            <span>Possibly the concrete slab by the Jaral Cabin pictured below was a spring box.
+            </span>
+        </p>
+        <img src="./Pictures/CCC_Slab_by_Jaral_Cabin.jpg" width="280" height="300">
+        <p> 
+            <span>
+                The trough and another water structure pictured below are located northeast of Tierra Monte.
+            </span>
+        </p>
+        <img  src="./Pictures/CCC_Water_Structure.jpg" width="250" height="310">
+        <img  src="./Pictures/CCC_Trough.jpg" width="250" height="310">
+    </div>
+    <div style="display:none;" id="Medallion" class="tabcontent">  
+        <h2>Medallion Trees</h2>
+        <p> 
+            <span>
+                There were at least five medallion trees around Tierra Monte.  These older trees had core
+                samples taken from them and analyzed and then based on the estimated year of germination 
+                they had metal medallions inserted with names that related to a historic event or person 
+                associated with the germination time frame.  Sometime prior to 2024 the Oliver Wendell Holmes, 
+                Jr. medallion tree located at latitude and longitude 35.211, -106.474 died.
+            </span>
+        </p>
+        <img src="./Pictures/Medallion_Oliver_Wendell_Holmes.jpg" width="250" height="300">
+        <p> 
+            <span>
+                The Robinson Crusoe Tree located at latitude and longitude 35.212, -106.467 fell
+                over after dying and no longer has a medallion attached but the P. T. Barnum Birth tree
+                located at latitude and longitude 35.211, -106.480, pictured below is still alive 
+                with the medallion. It is not known who collected the tree samples and put in the 
+                medallions but Carl Geneva believes it was the CCC. 
+            </span>
+        </p>
+        <img src="./Pictures/Medallion_PT_Barnum_Birth.jpg" width="250" height="300">
+    </div>
+</div>
+<div style="display:none;" id="Residents" class="tabcontent">  
+    <h2>Residents Previous and Current</h2>
+    <p> 
+        <span>
+            Doc Victor Westphall (1913-2003) who with his wife, Jeanne (1915-2004), built the Vietnam 
+            Veteran's Memorial  in Angel Fire, New Mexico to honor their son, Victor David Westphall 
+            (1940-1968), a marine killed in action in Vietnam on May 22, 1968, also built two houses 
+            in Tierra Monte.  In 1960 Westphall built the houses at 1101 and #3.<br><br>
+
+            Tom Smylie (1937-2023) who lived on lot #25 for many years bred peregrines and had large 
+            bird cages around his house.  His efforts contributed to the removal of the species from 
+            the endangered list.<br><br>
+            
+            Charles R (Bob) Hutchins (1929-2008) lived on lot #3. He was a Taxonomist who along with a 
+            few other collaborated and collected plants. They published the Flora of New Mexico.<br><br>
+            
+            At some point Sam Poxon (1928-2011) purchased lots 6-13 east of his house and prior to 
+            1984 Sam Poxon who lived in the house at #14 kept a locked cable across the road in this 
+            area.<br><br> 
+            
+            It should be noted that when Harald Mueller(1940-2003) and his wife Kathy had the house 
+            at 1106 La Luz Trail built, they used 1 Germania Lane as their address. Harald and Kathy 
+            owned the Rio Rancho Inn from 1986 to 1998.<br><br>
+
+            Gary Johnson who served as Governor of the State of New Mexico from 1995 to 2003 in 
+            1987 built and prior to serving as Governor lived in the house on lot #4 with his wife, 
+            Dee (1952-2006).<br><br>
+
+            Sam Donaldson, famed news anchor, and his wife, Sandy, live at 1106 La Luz Trail. The eagle
+            on Sesame Street was inspired by Sam.<br><br>  
+        </span>
+    </p>
+</div>
+<div style="display:none;" id="Houses" class="tabcontent">  
+    <h2>Current Houses</h2>
+    <p> 
+        <span>
+            The list of houses below with information on their build dates, square footage, number of
+            bedrooms and bathrooms was obtained from Zillow. If the builder is know it is listed and if
+            the lot is vacant it is not in the table.
+        </span>
+    </p>
+    <table>
+        <caption><b>Tierra Monte & Valley View Houses</b></caption>
+        <tr><th>lot #</th>	<th>Built</th> <th>Sq Ft</th>	<th>Bed/Ba</th>	<th>Builder</th></tr>
+        <tr><td>1</td>	    <td>1976</td>	<td>2598</td>	<td>3/1.5</td>	<td> </td></tr>
+        <tr><td>2</td>	    <td>1976</td>	<td>2961</td>	<td>4/2</td>	<td>Ralph Roybal</td></tr>
+        <tr><td>3</td>	    <td>1960</td>	<td>2360</td>	<td>3/2.5</td>	<td>Victor Westphall</td></tr>
+        <tr><td>4</td>	    <td>1987</td>	<td>3960</td>	<td>4/4</td>	<td>Gary Johnson</td></tr>
+        <tr><td>5</td>	    <td>1974</td>	<td>2346</td>	<td>2/2</td>	<td>Ralph Roybal</td></tr>     
+        <tr><td>6</td>	    <td>1996</td>	<td>5157</td>	<td>4/4</td>	<td>Gerald Martin</td></tr>
+        <tr><td>8</td>	    <td>1992</td>	<td>2430</td>	<td>2/2</td>	<td>Greg Baczek</td></tr>
+        <tr><td>10</td>	    <td>1995</td>	<td>3888</td>	<td>5/4</td>	<td>Bruce Wilkinson</td></tr>
+        <tr><td>12</td>	    <td>1991</td>	<td>3007</td>	<td>3/3</td>	<td>Steve Hacker</td></tr>
+        <tr><td>14</td>	    <td>1974</td>	<td>5088</td>	<td>4/4</td>	<td> </td></tr>
+        <tr><td>17</td>	    <td>1985</td>	<td>3736</td>	<td>3/3.5</td>	<td>Dick Hisaw</td></tr>
+        <tr><td>18</td>	    <td>1987</td>	<td>4668</td>	<td>4/5</td>	<td>Cimarron</td></tr>
+        <tr><td>19</td>	    <td>1986</td>	<td>3200</td>	<td>4/3</td>	<td></td></tr>
+        <tr><td>20</td>	    <td>1984</td>	<td>2974</td>	<td>3/3</td>	<td></td></tr>
+        <tr><td>21</td>	    <td>1975</td>	<td>2820</td>	<td>3/2.5</td>	<td>Ralph Roybal</td></tr>
+        <tr><td>22</td>	    <td>2009</td>	<td>4997</td>	<td>3/3.5</td>	<td>Architractors</td></tr>
+        <tr><td>23</td>	    <td>1993</td>	<td>4222</td>	<td>3/2.5</td>	<td>Del Rio</td></tr>
+        <tr><td>24</td>	    <td>1982</td>	<td>3120</td>	<td>4/2.5</td>	<td>Brennan</td></tr>
+        <tr><td>25</td>	    <td>1954</td>	<td>1860</td>	<td>2/2</td>	<td> </td></tr> 
+        <tr><td>26</td>	    <td>1986</td>	<td>5743</td>	<td>5/3</td>	<td>C.E. Laird</td></tr>      
+        <tr><td>29</td>	    <td>1997</td>	<td>3430</td>	<td>4/3</td>	<td></td></tr>
+        <tr><td>30</td>	    <td>1984</td>	<td>2566</td>	<td>4/3</td>	<td> </td></tr>
+        <tr><td>32</td>	    <td>2000</td>	<td>5410</td>	<td>4/5.5</td>	<td> </td></tr>
+        <tr><td>33</td>	    <td>1975</td>	<td>2777</td>	<td>3/2</td>	<td>Ralph Roybal</td></tr>
+        <tr><td>35</td>	    <td>1979</td>	<td>3312</td>	<td>4/3</td>	<td> </td></tr>
+        <tr><td>36</td>	    <td>1989</td>	<td>3234</td>	<td>3/3</td>	<td> </td></tr>
+        <tr><td>37</td>	    <td>1989</td>	<td>3139</td>	<td>3/2.5</td>	<td> </td></tr>
+        <tr><td>38</td>	    <td>1996</td>	<td>3074</td>	<td>3/2</td>	<td> </td></tr>
+        <tr><td>39</td>	    <td>1984</td>	<td>4583</td>	<td>4/4</td>	<td>Ashcraft</td></tr>
+        <tr><td>40</td>	    <td>1987</td>	<td>2941</td>	<td>3/3</td>	<td>Dave Peterson </td></tr>
+        <tr><td>41</td>	    <td>1976</td>	<td>3335</td>	<td>4/4</td>	<td> </td></tr>
+        <tr><td>42</td>	    <td>1955</td>	<td>3819</td>	<td> </td>	    <td> </td></tr>
+        <tr><td>44(B)</td>	<td>1970</td>	<td>5076</td>	<td>4/7</td>	<td> </td></tr>
+        <tr><td>48(C)</td>	<td>1990</td>	<td>7733</td>	<td>5/5</td>	<td>Emil Burdridge</td></tr>
+        <tr><td>6(D)</td>	<td>1973</td>	<td>2711</td>	<td>4/2</td>	<td> </td></tr>
+        <tr><td>1101(19C)</td>  <td>1960</td>	<td>986</td>	<td>2/1</td>	<td>Victor Westphall</td></tr>
+        <tr><td>1106(28C)</td>	<td>1987</td>	<td>5916</td>	<td>4/5</td>	<td></td></tr>
+        <tr><td>1109(20C)</td>	<td>1989</td>	<td>3269</td>	<td>3/3</td>	<td>Jim Bagely</td></tr>
+        <tr><td>1113(21C)</td>	<td>2009</td>	<td>3989</td>	<td>4/3.5</td>	<td>Diego Ruiz</td></tr>
+        <tr><td>1116(24C2)</td>	<td>1994</td>	<td>2391</td>	<td>3/3.5</td>	<td>Joe Gallagher</td></tr>
+        <tr><td>1117(22C1)</td>	<td>2006</td>	<td>3081</td>	<td>3/3</td>	<td></td></tr>
+        <tr><td>1120(24C1)</td>	<td>1990</td>	<td>3487</td>	<td>2/3</td>	<td>Charlie Kaspar</td></tr>
+        <tr><td>1121(23C1)</td>	<td>1992</td>	<td>2100</td>	<td>1/1</td>	<td>Charlie Kaspar</td></tr>
+    </table>
+</div>
+<div style="display:none;" id="House Articles" class="tabcontent">  
+    <h2>Articles on Houses in the Area</h2>
+    <div style="display:none;" id="Southern Mansion" class="homesubtabcontent">
+        <embed style="width:100%; height:65svh;" src=./House_Articles/southern_mansion1.pdf>
+        <embed style="width:100%; height:65svh;" src=./House_Articles/southern_mansion2.pdf>
+    </div>
+    <div style="display:none;" id="Mediterranean Villa" class="homesubtabcontent">
+        <embed style="width:100%; height:65svh;" src=./House_Articles/Telescope_house1.pdf>
+        <embed style="width:100%; height:65svh;" src=./House_Articles/Telescope_house2.pdf>
+    </div>
+    <div style="display:none;" id="Hutchins" class="homesubtabcontent">
+        <p> 
+            <span>
+                The Hutchins' house at #12 was designed by Robert Habiger and built by Steve Hacker. 
+                The day that the Hutchins' closed on their house Steve flew to Arizona with his wife 
+                in their experimental plane that they had built. On the flight back to Albquerque the 
+                Hackers were killed when their plane crashed. Articles about the Hackers and the crash
+                are below.
+            </span>
+        </p>
+        <embed style="width:100%; height:75svh;" src=./House_Articles/Hacker1.pdf>
+        <embed style="width:100%; height:45svh;" src=./House_Articles/Hacker2.pdf>
+        <p> 
+            <span>
+                Since the Hutchins house at #12 was the last house that Steve Hacker built the Journal did 
+                the following article about the house.
+            </span>
+        </p>
+        <embed style="width:100%; height:65svh;" src=./House_Articles/Hutchins_house1.pdf>
+        <embed style="width:100%; height:65svh;" src=./House_Articles/Hutchins_house2.pdf>
+    </div>
+</div>
+<div style="display:none;" id="Acknowledgements" class="tabcontent">  
+    <h2>Acknowledgements</h2>
+    <p> 
+        <span>
+        Debra Hutchins would like to thank her husband, Jim, and his entire family for 
+        introducing her to the beautiful area of Tierra Monte. Debra and Jim moved to Tierra 
+        Monte when they built their house in 1991. Jim's family (his parents, Bob and Gene, 
+        and his 4 siblings) moved to Tierra Monte in 1971. It is a wonderous area with access 
+        to fabulous hiking trails, abundant wildlife, vast views, and rich history.<br><br>
+     
+        Debra would like to thank her hiking buddy, Charlie, for showing her the many 
+        intriguing features of the Tierra Monte area and being patient as she attempted to 
+        take pictures for documentation. Most of the features in this posting would 
+        have not been noticed had it not been for her guide, Charlie.<br><br>
+                
+        Debra's goal in posting this is to preserve information regarding the development 
+        of the area, as well as, the history of the area. She has tried to accurately convey 
+        this information and hopes that others will find the content informative and 
+        interesting. 
+        </span>
+    </p>
+</div>    
+</body>    
+</html>

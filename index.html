@@ -4,15 +4,6 @@
 <meta charset="utf-8">
     <title>In and About Tierra Monte</title>
     <style> 
-        nav {
-            color: black;
-            background-color: deepskyblue;
-            font-style:large;
-            font-size: 20px;
-            border: 1px solid black;
-            width: 77%;
-            
-        }
         
         /* Style the tab */
         .tab {
@@ -56,18 +47,9 @@
           border-left: none;
           /*height: 300px;*/
         }
-        
-        /* Style the subtab */
-        .subtab {
-          float: left;
-          border: 1px solid #ccc;
-          background-color: #f1f1f1;
-          width: 20%;
-          /*height: 300px; */
-        }
 
         /* Style the buttons that are used to open the tab content */
-        .subtab button {
+        .hissubtablinks button {
           display: block;
           background-color: inherit;
           color: black;
@@ -76,32 +58,27 @@
           border: none;
           outline: none;
           text-align: left;
-          /*margin-left: 15px;
-          margin-bottom: 4px;*/
           cursor: pointer;
           transition: 0.3s;
         }
 
-        /* Change background color of buttons on hover */
-        .subtab button:hover {
+        .hissubtablinks button:hover {
           background-color: #ddd;
         }
 
         /* Create an active/current "tab button" class */
-        .subtab button.active {
-          /*background-color: #ccc;*/
+        .hissubtablinks button.active {
           background-color:black;
-          /*color:white*/
         }
 
         /* Style the history subtab links */
         .hissubtablinks {
-          /*color:aqua;*/
           display: block;
           text-align: left;
           margin-left: 15px;
           margin-bottom: 4px;
           margin-top: 4px;
+          max-width: 178px;
           /*line-height: 0.8;*/
        }
 
@@ -115,14 +92,37 @@
           /*height: 300px;*/
         }
 
+        /* Style the buttons that are used to open the tab content */
+        .homesubtablinks button {
+          display: block;
+          background-color: inherit;
+          color: black;
+          padding: 10px 10px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .homesubtablinks button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+        .homesubtablinks button.active {
+          background-color:black;
+        }
+
         /* Style the home article subtab links */
         .homesubtablinks {
-          /*color:aqua;*/
           display: block;
           text-align: left;
           margin-left: 15px;
           margin-bottom: 4px;
           margin-top: 4px;
+          max-width: 178px;
           /*line-height: 0.8;*/
        }
 
@@ -163,6 +163,11 @@
                 for (i = 0; i < hissubtabcontent.length; i++) {
                     hissubtabcontent[i].style.display = "none";
                 }
+                // Get all elements with class="hissubtablinks" and remove the class "active"
+                 hissubtablinks = document.getElementsByClassName("hissubtablinks");
+                for (i = 0; i < hissubtablinks.length; i++) {
+                    hissubtablinks[i].className = hissubtablinks[i].className.replace(" active", "");
+                }
             }
 
             hissubtablinks = document.getElementsByClassName("hissubtablinks");
@@ -187,6 +192,11 @@
                 homesubtabcontent = document.getElementsByClassName("homesubtabcontent");
                 for (i = 0; i < homesubtabcontent.length; i++) {
                     homesubtabcontent[i].style.display = "none";
+                }
+                // Get all elements with class="homesubtablinks" and remove the class "active"
+                homesubtablinks = document.getElementsByClassName("homesubtablinks");
+                for (i = 0; i < homesubtablinks.length; i++) {
+                    homesubtablinks[i].className = homesubtablinks[i].className.replace(" active", "");
                 }
             }
 
@@ -220,24 +230,12 @@
             if ((sectionName == 'History') || (historybuttonsvisible)) 
             {
                 toggleHistoryButtons();
-                if ( !historybuttonsvisible ){
-                    document.getElementById(sectionName).style.display = "none";
-                    evt.currentTarget.className = evt.currentTarget.className.replace(" active", "");
-                }
             }
 
             if ((sectionName == 'House Articles') || (homebuttonsvisible)) 
             {
                 toggleHomeArticleButtons();
-                if ( !homebuttonsvisible ){
-                    document.getElementById(sectionName).style.display = "none";
-                    evt.currentTarget.className = evt.currentTarget.className.replace(" active", "");
-                }
             }
-        }
-        function openHistoryButtons() {
-            let historybuttons = document.getElementById("historybuttons");
-            historybuttons.className = "visible";
         }
         
         function openHistory(evt, historySelection) {
@@ -288,7 +286,7 @@
         <h1><strong>In and About Tierra Monte</strong> </h1>
         <br/> <br/>
         
-     <div class="tab">
+     <div class="tab" style="width:12em;" >
         <button class="tablinks" onclick="openSection(event,'Intro')">Introduction</button>
         <button class="tablinks" onclick="openSection(event,'Location')">Location</button>    
         <button class="tablinks" onclick="openSection(event,'Plat')">Plat</button>
@@ -318,21 +316,6 @@
         </div>
         <button class="tablinks" onclick="openSection(event,'Acknowledgements')">Acknowledgements</button>
     </div>
-
-    <!--<style>     
-        .vertical-menu {
-            width: 200px;
-        }
-      </style>  -->
-    <!--<div class="vertical-menu">
-         style="margin-left:3em;" class="invisible">
-        <a id="I" href="#Intro">Introduction</a>
-        <a id="L" href="#Location">Location</a>
-        <a id="H" href="#History of Area">History of Area</a>
-        <a id="C" href="#CCC Structures in Area">CCC Structures in Area</a>
-        <a id="M" href="#Medallion Trees">Medallion Trees </a>       
-        <a id="R" href="#Previous and Current Residents">Previous and Current Resident </a>       <a id="H" href="#Current Houses">Current Houses </a>
-    </div>-->
         
     <div id="Intro" class="tabcontent">
         <img  src="./Pictures/tierramonte.jpg" width="300" height="175" alt="Tierra Monte">
@@ -675,7 +658,7 @@
                 Well 1 pictured below is located on lot #34.
             </span>
         </p>
-        <img  src="./Pictures/Water_Well4.jpg" width="250" height="300"> <br
+        <img  src="./Pictures/Water_Well1.jpg" width="250" height="300"> <br>
         <p>
             <span>
                 Well 5 pictured below is located across from lot #17 but is out of service.

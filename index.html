@@ -292,7 +292,7 @@
         <button class="tablinks" onclick="openSection(event,'Plat')">Plat</button>
         <button class="tablinks" onclick="openSection(event,'History')">History</button> 
         <!--<button class="tablinks" onclick="openHistoryButtons()">History of Area</button> -->
-         <div id="historybutton_print">
+        <div id="historybutton_print">
             <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Treaty')">Treaty</button>
             <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Homesteads')">Homesteads</button>
             <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Homestead Surveys')">Homestead Surveys</button>
@@ -303,6 +303,7 @@
             <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Valley View')">Valley View</button>
             <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Access')">Access</button>
             <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Pueblo Claim')">Pueblo Claim</button>
+            <button class="hissubtablinks" style="display:none;" onclick="openHistory(event,'Timeline')">Timeline</button>
         </div>
         <button class="tablinks" onclick="openSection(event,'CCC')">CCC</button>
         <button class="tablinks" onclick="openSection(event,'Medallion')">Medallion Trees</button> 
@@ -320,7 +321,9 @@
     <div id="Intro" class="tabcontent">
         <img  src="./Pictures/tierramonte.jpg" width="300" height="175" alt="Tierra Monte">
         <h2>Introduction</h2>      
-        <p>Tierra Monte and Valley View Acres are small communities nestled in the foothills of Juan Tabo Canyon.</p>
+        <p>Tierra Monte and Valley View Acres are small communities nestled in the foothills of Juan Tabo Canyon.<br><br>
+           The purpose of this website is to preserve information regarding the development 
+            of this area, as well as, the history of the area.</p>
     </div>
     <div style="display:none;" id="Location" class="tabcontent">   
         <h2> Location</h2>
@@ -370,9 +373,11 @@
             at $1.25 per acre so the cost was a limiting factor?<br><br>
 
             Detailed information from surveyor, C. A. Long, who in 1916 surveyed the homesteads in Section 2 Township 11 
-            north of Range 4 east of the New Mexico Meridian, can be found under Surveys in website, 
-            https://glorecords.blm.gov/search/default.aspx#searchTabIndex=0&searchByTypeIndex=0. 
-            The homestead plat maps, included below are from this website. 
+            north of Range 4 east of the New Mexico Meridian, can be found under Surveys in website,
+            
+            <a href="https://glorecords.blm.gov/search/default.aspx#searchTabIndex=0&searchByTypeIndex=0" target="_blank">https://glorecords.blm.gov/search/default.aspx#searchTabIndex=0&searchByTypeIndex=0</a>. 
+            
+            The homestead plat maps, included below are obtained from this website. 
             </span> 
         </p>
         <p>Soloman Chavez's Plat No. 276</p>
@@ -763,7 +768,7 @@
                 Dr. Stanley Hordes, former Historian for the State of New Mexico, in 1996 put out a report, History of the 
                 Boundaries of the Pueblo Sandia (1748-1860), concluding the Pueblo received more land that it was entitled 
                 under the 1748 Spanish land grant. This report can be found at 
-                https://digitalrepository.unm.edu/law_certificate_indianlaw_sandia/58/<br><br>
+                <a href="https://digitalrepository.unm.edu/law_certificate_indianlaw_sandia/58/" target="_blank">https://digitalrepository.unm.edu/law_certificate_indianlaw_sandia/58/</a><br><br>
 
                 The following article discusses the eight page color fliers distributed by the Sandia Pueblo.
             </span>
@@ -823,7 +828,7 @@
             <span>
                 In 2003 Congress passed and the President signed legislation that settled the Pueblo's claim.<br><br>
                 The legislation that passed can be found on the web at 
-                https://www.govinfo.gov/content/pkg/CRPT-107srpt285/html/CRPT-107srpt285.htm<br><br>
+                <a href="https://www.govinfo.gov/content/pkg/CRPT-107srpt285/html/CRPT-107srpt285.htm" target="_blank">https://www.govinfo.gov/content/pkg/CRPT-107srpt285/html/CRPT-107srpt285.htm</a><br><br>
 
                 The legislation included reimbursement of legal fees for all parties involved.  Anita Miller a land 
                 lawyer and homeowner in Sandia Heights North who represented the landowners throughout the claim years, 
@@ -847,6 +852,9 @@
         </p>
         <img  src="./Pictures/Article_President_Bush_Ratifies_Compromise.jpg" width="600" height="250">
     </div>
+    <div style="display:none;" id="Timeline" class="hissubtabcontent"> 
+        <h2>Timeline of Area</h2>
+        <embed style="width:100%; height:100svh;" src="./House_Articles/TM_Timeline.pdf#zoom=150">
     <div style="display:none;" id="CCC" class="tabcontent">  
         <h2>CCC Structures in the Area</h2>
         <p> 

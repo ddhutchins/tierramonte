@@ -135,17 +135,66 @@
           border-left: none;
           /*height: 300px;*/
         }
+        /* Style the buttons that are used to open the tab content */
+        .wildflowersubtablinks button {
+          display: block;
+          background-color: inherit;
+          color: black;
+          padding: 10px 10px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .wildflowersubtablinks button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+        .wildflowersubtablinks button.active {
+          background-color:black;
+        }
+
+        /* Style the wildflower subtab links */
+        .wildflowersubtablinks {
+          display: block;
+          text-align: left;
+          margin-left: 15px;
+          margin-bottom: 4px;
+          margin-top: 4px;
+          max-width: 178px;
+          /*line-height: 0.8;*/
+       }
+
+        /* Style the subtab content */
+        .wildflowersubtabcontent {
+          float: left;
+          padding: 0px 12px;
+          border: 1px solid #ccc;
+          width: 70%;
+          border-left: none;
+          /*height: 300px;*/
+        }
 
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
         }
+
+        .content-box {
+             border-collapse: collapse;
+        }
     </style>
     <script>
         let historybuttonsvisible = false;
         let homebuttonsvisible = false;
+        let seasonsbuttonsvisible = false;
         let historybutton_print = document.getElementById("historybutton_print");
         let homebutton_print = document.getElementById("homebutton_print");
+        let wildflower_print = document.getElementById("wildflower_print");
 
         function toggleHistoryButtons () {
             historybuttonsvisible = !historybuttonsvisible;
@@ -205,7 +254,38 @@
             for (i = 0; i < homesubtablinks.length; i++) {
                 homesubtablinks[i].style.display = visiblevalue;
             }
-        }        
+        }
+        
+        function toggleSeasonButtons () {
+            seasonsbuttonsvisible = !seasonsbuttonsvisible;
+            console.log('season button =', seasonsbuttonsvisible);
+
+            let i, wildflowersubtablinks, visiblevalue;
+            //display all seasons buttons or not
+            if (seasonsbuttonsvisible) {
+                visiblevalue = "block";
+            }
+            else {
+                visiblevalue = "none";
+                // Get all elements with class="wildflowersubtabcontent" and hide them
+                wildflowersubtabcontent = document.getElementsByClassName("wildflowersubtabcontent");
+                for (i = 0; i < wildflowersubtabcontent.length; i++) {
+                    wildflowersubtabcontent[i].style.display = "none";
+                }
+                // Get all elements with class="wildflowersubtablinks" and remove the class "active"
+                wildflowersubtablinks = document.getElementsByClassName("wildflowersubtablinks");
+                for (i = 0; i < wildflowersubtablinks.length; i++) {
+                    wildflowersubtablinks[i].className = wildflowersubtablinks[i].className.replace(" active", "");
+                }
+            }
+
+            wildflowersubtablinks = document.getElementsByClassName("wildflowersubtablinks");
+            // Get all elements with class="wildflowersubtablinks" and display or hide them 
+            for (i = 0; i < wildflowersubtablinks.length; i++) {
+                wildflowersubtablinks[i].style.display = visiblevalue;
+            }
+        }
+
         function openSection(evt, sectionName) {
             // Declare all variables
             var i, tabcontent, tablinks;
@@ -235,6 +315,11 @@
             if ((sectionName == 'House Articles') || (homebuttonsvisible)) 
             {
                 toggleHomeArticleButtons();
+            }
+
+            if ((sectionName == 'Wildflowers') || (seasonsbuttonsvisible)) 
+            {
+                toggleSeasonButtons();
             }
         }
         
@@ -279,6 +364,26 @@
             document.getElementById(homeSelection).style.display = "block";
             evt.currentTarget.className += " active";
         }
+                  
+        function openWildflowerSeasons(evt, wildflowerSelection) {
+            // Declare all variables
+            var i, wildflowersubtabcontent, wildflowersubtablinks;
+
+            // Get all elements with class="wildflowersubtabcontent" and hide them
+            wildflowersubtabcontent = document.getElementsByClassName("wildflowersubtabcontent");
+            for (i = 0; i < wildflowersubtabcontent.length; i++) {
+                wildflowersubtabcontent[i].style.display = "none";
+            }
+
+            wildflowersubtablinks = document.getElementsByClassName("wildflowersubtablinks");
+            for (i = 0; i < wildflowersubtablinks.length; i++) {
+                wildflowersubtablinks[i].className = wildflowersubtablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(wildflowerSelection).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
 </head>
 <body>
@@ -314,6 +419,10 @@
             <button class="homesubtablinks" style="display:none;" onclick="openHomeArticles(event,'Southern Mansion')">Southern Mansion</button>
             <button class="homesubtablinks" style="display:none;" onclick="openHomeArticles(event,'Mediterranean Villa')">Mediterranean Villa</button>
             <button class="homesubtablinks" style="display:none;" onclick="openHomeArticles(event,'Hutchins')">Hutchins</button>
+        </div>
+        <button class="tablinks" onclick="openSection(event,'Wildflowers')">Wildflowers</button>
+        <div id="wildflower_print">
+            <button class="wildflowersubtablinks" style="display:none;" onclick="openWildflowerSeasons(event,'Spring')">Spring</button>
         </div>
         <button class="tablinks" onclick="openSection(event,'Acknowledgements')">Acknowledgements</button>
     </div>
@@ -1077,6 +1186,241 @@
         </p>
         <embed style="width:100%; height:65svh;" src=./House_Articles/Hutchins_house1.pdf>
         <embed style="width:100%; height:65svh;" src=./House_Articles/Hutchins_house2.pdf>
+    </div>
+</div>
+<div style="display:none;" id="Wildflowers" class="tabcontent">  
+    <h2>Wildflowers in the Area based on Season</h2>
+    <div style="display:none; border:none;" id="Spring" class="wildflowersubtabcontent">
+        <h2>Spring Wildflowers</h2>
+        <b><i>Information on each wildflower is followed by picture(s)</i></b><br>
+       <p>
+            <span>
+                <b>Common Name:</b> Antelope Horn Milkweed<br>
+                <b>Scientific Name:</b> Asclepias asperula<br>
+                <b>Color:</b> Greenish/Creamy<br>
+                <b>Family:</b> Dogbane<br>
+            </span>
+            <img src="./Pictures/Spring_Antelope_Horn_Milkweed1.jpg" width="200" height="200">
+            <img src="./Pictures/Spring_Antelope_Horn_Milkweed2.jpg" width="220" height="250">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Apache Plume<br>
+                <b>Scientific Name:</b> Fallugia Paradoxa<br>
+                <b>Color:</b> White<br>
+                <b>Family:</b> Rose<br>
+            </span>
+            <img src="./Pictures/Spring_Apache_Plume.jpg" width="350" height="250">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Baby Aster<br>
+                <b>Scientific Name:</b> Chaetopappa ericoides<br>
+                <b>Color:</b> White<br>
+                <b>Family:</b> Aster<br>
+            </span>
+            <img src="./Pictures/Spring_Baby_Aster.jpg" width="200" height="200">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Blackfoot Daisy<br>
+                <b>Scientific Name:</b> Melampodium leucanthum<br>
+                <b>Color:</b> White<br>
+                <b>Family:</b> Aster<br>
+            </span>
+            <img src="./Pictures/Spring_Blackfoot_Daisy.jpg" width="200" height="200">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Broadleaf Milkweed<br>
+                <b>Scientific Name:</b> Asclepias latifolia<br>
+                <b>Color:</b> Greenish/white<br>
+                <b>Family:</b> Dogbane<br>
+            </span>
+            <img src="./Pictures/Spring_Broadleaf_Milkweed.jpg" width="400" height="300">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Buffalo Gourd<br>         
+                <b>Scientific Name:</b> Cucurbita foetidissma<br>
+                <b>Color:</b> Yellow<br>
+                <b>Family:</b> Cucumber<br>
+            </span>
+            <img src="./Pictures/Spring_Buffalo_Gourd2.jpg" width="200" height="300">
+            <img src="./Pictures/Spring_Buffalo_Gourd1.jpg" width="300" height="400">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Gaura<br>         
+                <b>Scientific Name:</b> Oenothera suffrutescens<br>
+                <b>Color:</b> Red/white<br>
+                <b>Family:</b> Evening primrose<br>
+            </span>
+            <img src="./Pictures/Spring_Gaura.jpg" width="150" height="220">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Goldenweed Cutleaf<br>         
+                <b>Scientific Name:</b> Xanthisma spinulosum<br>
+                <b>Color:</b> Yellow<br>
+                <b>Family:</b> Aster<br>
+            </span>
+            <img src="./Pictures/Spring_Goldenweed_Cutleaf.jpg" width="320" height="220">
+        </p
+        <p>
+            <span>
+                <b>Common Name:</b> Hairy Goldenaster<br>         
+                <b>Scientific Name:</b> Heterotheca villosa<br>
+                <b>Color:</b> Yellow<br>
+                <b>Family:</b> Aster<br>
+            </span>
+            <img src="./Pictures/Spring_Hairy_Goldenaster.jpg" width="320" height="220">
+        </p
+        <p>
+            <span>
+                <b>Common Name:</b> Indian Paintbrush (foothills)<br>         
+                <b>Scientific Name:</b> Castilleja integra<br>
+                <b>Color:</b> Orange<br>
+                <b>Family:</b> Broomrape<br>
+            </span>
+            <img src="./Pictures/Spring_Indian_Paintbrush.jpg" width="150" height="220">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> James Penstemon<br>         
+                <b>Scientific Name:</b> Penstemon Jamesii<br>
+                <b>Color:</b> Pink/Lavender<br>
+                <b>Family:</b> Plantain<br>
+            </span>
+            <img src="./Pictures/Spring_James_Penstemon.jpg" width="190" height="240">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Mock Orange Little-leaf<br>         
+                <b>Scientific Name:</b> Philadelphus microphyllus<br>
+                <b>Color:</b> White<br>
+                <b>Family:</b> Hydrangea<br>
+            </span>
+            <img src="./Pictures/Spring_Mock_Orange_Little-leaf.jpg" width="300" height="400">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Narrowleaf Four-O'Clock<br>         
+                <b>Scientific Name:</b> Mirabilis linearis<br>
+                <b>Color:</b> White, Pink, Purple<br>
+                <b>Family:</b> Nyctaginaceae<br>
+            </span>
+            <img src="./Pictures/Spring_Narrowleaf_Four_O_Clock.jpg" width="220" height="300">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Pale Wolfberry<br>         
+                <b>Scientific Name:</b> Lycium pallidum<br>
+                <b>Color:</b> Green<br>
+                <b>Family:</b> Nightshade<br>
+            </span>
+            <img src="./Pictures/Spring_Pale_Wolfberry.jpg" width="200" height="200"">
+            <img src="./Pictures/Spring_Pale_Wolfberry2.jpg" width="220" height="300">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Purple Nightshade<br>         
+                <b>Scientific Name:</b> Solanum elaeagnifolium<br>
+                <b>Color:</b> Purple<br>
+                <b>Family:</b> Nightshade<br>
+            </span>
+            <img src="./Pictures/Spring_Purple_Nightshade2.jpg" width="130" height="200"">
+            <img src="./Pictures/Spring_Purple_Nightshade.jpg" width="350" height="250">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Salsify<br>         
+                <b>Scientific Name:</b> Tragopogon dubius<br>
+                <b>Color:</b> Yellow<br>
+                <b>Family:</b> Aster<br>
+            </span>
+            <img src="./Pictures/Spring_Salsify1.jpg" width="220" height="250"">
+            <img src="./Pictures/Spring_Salsify2.jpg" width="220" height="250">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Scorpionweed<br>         
+                <b>Scientific Name:</b> Phacelia Integrifolia<br>
+                <b>Color:</b> Lavender<br>
+                <b>Family:</b> Waterleaf<br>
+            </span>
+            <img src="./Pictures/Spring_Scorpionweed.jpg" width="220" height="250"">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Shaggy Dwarf Morning-Glory<br>         
+                <b>Scientific Name:</b> Evolvulus nuttallianus<br>
+                <b>Color:</b> Pink<br>
+                <b>Family:</b> Morning Glory<br>
+            </span>
+            <img src="./Pictures/Spring_Shaggy_Dwarf_Morning-Glory.jpg" width="260" height="180"">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Showy Four-O'Clock<br>         
+                <b>Scientific Name:</b> Mirabilis multiflora<br>
+                <b>Color:</b> Pink to magenta<br>
+                <b>Family:</b> Four-O'Clock<br>
+            </span>
+            <img src="./Pictures/Spring_Showy_Four_O_Clock.jpg" width="460" height="320"">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Stinging Nettle (American)<br>         
+                <b>Scientific Name:</b> Urtica dioca subsp. Gracious<br>
+                <b>Color:</b> Creamy yellow (almost invisible to naked eye)<br>
+                <b>Family:</b> Nettle family<br><br>
+                <b>WARNING: </b>Stinging Nettle causes skin rashes and irritation so do not touch!<br>
+                    If you do get a rash use a paste of baking soda on the area.<br>
+            </span>
+            <img src="./Pictures/Spring_Stinging_Nettle1.jpg" width="250" height="250"">
+            <img src="./Pictures/Spring_Stinging_Nettle2.jpg" width="250" height="250"">
+        </p>
+        
+        <p>
+            <span>
+                <b>Common Name:</b> Thistle (NM)<br>         
+                <b>Scientific Name:</b> Cirsium neomexicanum<br>
+                <b>Color:</b> Pink to lavender<br>
+                <b>Family:</b> Aster<br>
+            </span>
+            <img src="./Pictures/Spring_Thistle.jpg" width="220" height="250"">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Verbena (Dakota vervain)<br>         
+                <b>Scientific Name:</b> Glandularia bipinnatifida<br>
+                <b>Color:</b> Pink to purple<br>
+                <b>Family:</b> Verbena<br>
+            </span>
+            <img src="./Pictures/Spring_Verbena.jpg" width="300" height="220"">
+        </p>
+
+        <p>
+            <span>
+                <b>Common Name:</b> Wallflower<br>         
+                <b>Scientific Name:</b> Erysimum capitatum<br>
+                <b>Color:</b> Yellow<br>
+                <b>Family:</b> Mustard<br>
+            </span>
+            <img src="./Pictures/Spring_Wallflower.jpg" width="220" height="250"">
+            <img src="./Pictures/Spring_Wallflower2.jpg" width="200" height="300"">
+        </p>
+        <p>
+            <span>
+                <b>Common Name:</b> Woolly Plantain<br>         
+                <b>Scientific Name:</b> Plantago patagonica<br>
+                <b>Color:</b> Transparent<br>
+                <b>Family:</b> Plantain<br>
+            </span>
+            <img src="./Pictures/Spring_Woolly_Plantain2.jpg" width="200" height="150"">
+            <img src="./Pictures/Spring_Woolly_Plantain.jpg" width="220" height="250"">
+        </p>
     </div>
 </div>
 <div style="display:none;" id="Acknowledgements" class="tabcontent">  

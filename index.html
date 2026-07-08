@@ -91,6 +91,49 @@
           border-left: none;
           /*height: 300px;*/
         }
+        /* Style the buttons that are used to open the tab content */
+        .docsubtablinks button {
+          display: block;
+          background-color: inherit;
+          color: black;
+          padding: 10px 10px;
+          width: 100%;
+          border: none;
+          outline: none;
+          text-align: left;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .docsubtablinks button:hover {
+          background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+        .docsubtablinks button.active {
+          background-color:black;
+        }
+
+        /* Style the community document subtab links */
+        .docsubtablinks {
+          display: block;
+          text-align: left;
+          margin-left: 15px;
+          margin-bottom: 4px;
+          margin-top: 4px;
+          max-width: 178px;
+          /*line-height: 0.8;*/
+       }
+
+        /* Style the subtab content */
+        .docsubtabcontent {
+          float: left;
+          padding: 0px 12px;
+          border: 1px solid #ccc;
+          width: 70%;
+          border-left: none;
+          /*height: 300px;*/
+        }
 
         /* Style the buttons that are used to open the tab content */
         .homesubtablinks button {
@@ -192,8 +235,10 @@
         let historybuttonsvisible = false;
         let homebuttonsvisible = false;
         let seasonsbuttonsvisible = false;
+        let docbuttonsvisible = false;
         let historybutton_print = document.getElementById("historybutton_print");
         let homebutton_print = document.getElementById("homebutton_print");
+        let docbutton_print = document.getElementById("docbutton_print");
         let wildflower_print = document.getElementById("wildflower_print");
 
         function toggleHistoryButtons () {
@@ -225,6 +270,35 @@
                 hissubtablinks[i].style.display = visiblevalue;
             }
         }
+        function toggleDocumentButtons () {
+            docbuttonsvisible = !docbuttonsvisible;
+            console.log('document button =', docbuttonsvisible);
+
+            let i, docsubtablinks, visiblevalue;
+            //display all document buttons or not
+            if (docbuttonsvisible) {
+                visiblevalue = "block";
+            }
+            else {
+                visiblevalue = "none";
+                // Get all elements with class="docsubtabcontent" and hide them
+                docsubtabcontent = document.getElementsByClassName("docsubtabcontent");
+                for (i = 0; i < docsubtabcontent.length; i++) {
+                    docsubtabcontent[i].style.display = "none";
+                }
+                // Get all elements with class="docsubtablinks" and remove the class "active"
+                docsubtablinks = document.getElementsByClassName("docsubtablinks");
+                for (i = 0; i < docsubtablinks.length; i++) {
+                    docsubtablinks[i].className = docsubtablinks[i].className.replace(" active", "");
+                }
+            }
+
+            docsubtablinks = document.getElementsByClassName("docsubtablinks");
+            // Get all elements with class="docsubtablinks" and display or hide them 
+            for (i = 0; i < docsubtablinks.length; i++) {
+                docsubtablinks[i].style.display = visiblevalue;
+            }
+        }
 
         function toggleHomeArticleButtons () {
             homebuttonsvisible = !homebuttonsvisible;
@@ -237,7 +311,7 @@
             }
             else {
                 visiblevalue = "none";
-                // Get all elements with class="hissubtabcontent" and hide them
+                // Get all elements with class="homesubtabcontent" and hide them
                 homesubtabcontent = document.getElementsByClassName("homesubtabcontent");
                 for (i = 0; i < homesubtabcontent.length; i++) {
                     homesubtabcontent[i].style.display = "none";
@@ -312,6 +386,11 @@
                 toggleHistoryButtons();
             }
 
+            if ((sectionName == 'TM Community Documents') || (docbuttonsvisible)) 
+            {
+                toggleDocumentButtons();
+            }
+            
             if ((sectionName == 'House Articles') || (homebuttonsvisible)) 
             {
                 toggleHomeArticleButtons();
@@ -344,7 +423,26 @@
             evt.currentTarget.className += " active";
         }
 
-                
+         function openDocuments(evt, docSelection) {
+            // Declare all variables
+            var i, docsubtabcontent, docsubtablinks;
+
+            // Get all elements with class="docsubtabcontent" and hide them
+            docsubtabcontent = document.getElementsByClassName("docsubtabcontent");
+            for (i = 0; i < docsubtabcontent.length; i++) {
+                docsubtabcontent[i].style.display = "none";
+            }
+
+            docsubtablinks = document.getElementsByClassName("docsubtablinks");
+            for (i = 0; i < docsubtablinks.length; i++) {
+                docsubtablinks[i].className = docsubtablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the link that opened the tab
+            document.getElementById(docSelection).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+                                 
         function openHomeArticles(evt, homeSelection) {
             // Declare all variables
             var i, homesubtabcontent, homesubtablinks;
@@ -413,7 +511,14 @@
         <button class="tablinks" onclick="openSection(event,'CCC')">CCC</button>
         <button class="tablinks" onclick="openSection(event,'Medallion')">Medallion Trees</button> 
         <button class="tablinks" onclick="openSection(event,'Residents')">Residents</button>
-        <button class="tablinks" onclick="openSection(event,'Covenants')">Covenants</button>
+        <button class="tablinks" onclick="openSection(event,'TM Community Documents')">TM Community Documents</button>
+        <div id="docbutton_print">
+            <button class="docsubtablinks" style="display:none;" onclick="openDocuments(event,'TM Covenants')">TM Covenants</button>
+            <button class="docsubtablinks" style="display:none;" onclick="openDocuments(event,'TM New Hookups')">TM New Hookups</button>
+            <button class="docsubtablinks" style="display:none;" onclick="openDocuments(event,'TM Water Billing Policy')">TM Water Billing Policy</button>
+            <button class="docsubtablinks" style="display:none;" onclick="openDocuments(event,'TM Water Rates')">TM Water Rates</button>
+            <button class="docsubtablinks" style="display:none;" onclick="openDocuments(event,'NM811 Excavation Law')">NM811 Excavation Law</button>
+        </div>
         <button class="tablinks" onclick="openSection(event,'Houses')">Houses</button> 
         <button class="tablinks" onclick="openSection(event,'House Articles')">House Articles</button>
         <div id="homebutton_print">
@@ -1101,14 +1206,50 @@
         </span>
     </p>
 </div>
-<div style="display:none;" id="Covenants" class="tabcontent">  
-    <h2>Tierra Monte Restrictive Covenants filed 6/16/2020 </h2>
+<div style="display:none;" id="TM Community Documents" class="tabcontent"> 
+    <h2>Tierra Monte Community Documents <br> (Select document from left side drop down)</h2>
+    <div style="display:none;" id="TM Covenants" class="docsubtabcontent">
      <p> 
         <span>
-            Below are the restrictive covenants as of June 16, 2020
+            Below are the Tierra Monte Restrictive Covenants as of June 16, 2020
         </span>
         <embed style="width:100%; height:65svh;" src=./Restrictive_Covenants/tierra_monte_covenants_signed_and_filed.pdf>
     </p>
+    </div>
+    <div style="display:none;" id="TM New Hookups" class="docsubtabcontent">
+     <p> 
+        <span>
+            Below is the Tierra Monte New Water Hookups Policy as of August 2025
+        </span>
+        <embed style="width:100%; height:65svh;" src=./Water_Association/2025-08_New_Hookups_to_TMWUA_Water_System.pdf>
+    </p>
+    </div>
+    <div style="display:none;" id="TM Water Billing Policy" class="docsubtabcontent">
+     <p> 
+        <span>
+            Below is the Tierra Monte Water Billing Policy as of March 24, 2026
+        </span>
+        <embed style="width:100%; height:65svh;" src=./Water_Association/2026-03-24_Water_Billing_Policy.pdf>
+    </p>
+    </div>
+    <div style="display:none;" id="TM Water Rates" class="docsubtabcontent">
+     <p> 
+        <span>
+            The document below contains the current Tierra Monte Water rates
+        </span>
+        <embed style="width:100%; height:65svh;" src=./Water_Association/TMWUA_Water_Rates.pdf>
+    </p>
+    </div>
+    <div style="display:none;" id="NM811 Excavation Law" class="docsubtabcontent">
+     <p> 
+        <span>
+            The two pdf files below pertain to the New Mexico 811 (NM811) law that requires two working days notice to Underground Facility Operators 
+            and two business day responses once a dig ticket is submitted so that all utilities are marked prior to any excavation.
+        </span>
+        <embed style="width:100%; height:65svh;" src=./Water_Association/2026-06-13_NM811_policy_letter.pdf>
+        <embed style="width:100%; height:65svh;" src=./Water_Association/TMWUA_procedures_NM811_Policy.pdf>  
+    </p> 
+    </div>
 </div>
 <div style="display:none;" id="Houses" class="tabcontent">  
     <h2>Current Houses</h2>
@@ -1168,7 +1309,7 @@
     </table>
 </div>
 <div style="display:none;" id="House Articles" class="tabcontent">  
-    <h2>Articles on Houses in the Area</h2>
+    <h2>Articles on Houses in the Area <br> (Select house article from left side drop down)</h2>
     <div style="display:none;" id="Southern Mansion" class="homesubtabcontent">
         <embed style="width:100%; height:65svh;" src=./House_Articles/southern_mansion1.pdf>
         <embed style="width:100%; height:65svh;" src=./House_Articles/southern_mansion2.pdf>
@@ -1200,7 +1341,7 @@
     </div>
 </div>
 <div style="display:none;" id="Wildflowers" class="tabcontent">  
-    <h2>Wildflowers in the Area based on Season (Select Season)</h2>
+    <h2>Wildflowers in the Area based on Season <br> (Select season from left side drop down) </h2>
     <div style="display:none; border:none;" id="Spring" class="wildflowersubtabcontent">
         <h2>Spring Wildflowers</h2>
         <b><i>Information on each wildflower is followed by picture(s)</i></b><br>
